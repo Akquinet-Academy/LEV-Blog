@@ -1,6 +1,6 @@
 package de.brightslearning.repository;
 
-import de.brightslearning.entitiy.User;
+import de.brightslearning.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

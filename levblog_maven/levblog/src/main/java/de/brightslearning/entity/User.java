@@ -1,7 +1,6 @@
-package de.brightslearning.entitiy;
+package de.brightslearning.entity;
 
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 
 @Entity

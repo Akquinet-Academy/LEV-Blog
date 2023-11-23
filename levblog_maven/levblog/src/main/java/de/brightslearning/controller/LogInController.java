@@ -1,8 +1,8 @@
 package de.brightslearning.controller;
 
-import de.brightslearning.entitiy.Session;
+import de.brightslearning.entity.Session;
 import de.brightslearning.repository.SessionRepository;
-import de.brightslearning.entitiy.User;
+import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;

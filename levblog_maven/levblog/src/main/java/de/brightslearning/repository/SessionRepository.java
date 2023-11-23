@@ -1,6 +1,6 @@
 package de.brightslearning.repository;
 
-import de.brightslearning.entitiy.Session;
+import de.brightslearning.entity.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.Instant;
