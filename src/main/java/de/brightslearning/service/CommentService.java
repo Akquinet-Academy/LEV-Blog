@@ -1,16 +1,28 @@
 package de.brightslearning.service;
 
 import de.brightslearning.entity.Comment;
+import de.brightslearning.repository.CommentRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface CommentService {
-    List<Comment> findAll();
+public class CommentService {
 
-    Optional<Comment> findById(Integer commentId);
+    private final CommentRepository commentRepository;
 
-    List<Comment> findByPostIdOrderByDateAsc(Integer postId);
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
+    public List<Comment> findAll() {
+        return commentRepository.findAll();
+    }
 
+    public Optional<Comment> findById(Integer kommentarId) {
+        return commentRepository.findById(kommentarId);
+    }
+
+    public List<Comment> findByPostIdOrderByDateAsc(Integer postId) {
+        return commentRepository.findByPostIdOrderByDateAsc(postId);
+    }
 }
