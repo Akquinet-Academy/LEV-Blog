@@ -1,5 +1,5 @@
 -- DROP DATABASE IF EXISTS blog;
---
+-- --
 -- CREATE DATABASE blog;
 
 -- DROP OWNED BY admin;
