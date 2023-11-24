@@ -63,6 +63,9 @@ public class Post {
         return user;
     }
 
+    public int getId() {
+        return this.id;
+    }
     public void setUser(User user) {
         this.user = user;
     }
