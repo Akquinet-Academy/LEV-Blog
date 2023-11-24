@@ -34,10 +34,6 @@ public class User {
     public User() {
     }
 
-    public void writeComment() {
-    }
-
-
     public int getId() {
         return id;
     }

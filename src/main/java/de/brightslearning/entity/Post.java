@@ -44,7 +44,7 @@ public class Post {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -63,9 +63,6 @@ public class Post {
         return user;
     }
 
-    public int getId() {
-        return this.id;
-    }
     public void setUser(User user) {
         this.user = user;
     }
