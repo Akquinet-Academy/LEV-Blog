@@ -6,12 +6,15 @@ import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Instant;
 import java.util.Optional;
 @Controller
+@RequestMapping(value = "/login")
 public class LogInController {
 
 private final SessionRepository sessionRepository;
@@ -24,7 +27,7 @@ private final UserRepository userRepository;
 
 //    public LogInController() {
 //    }
-
+    @Autowired
     @PostMapping("/login")
     public String login(HttpServletResponse response) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword("...", "...");
