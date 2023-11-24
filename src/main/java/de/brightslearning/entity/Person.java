@@ -37,6 +37,4 @@ public class Person {
 
 
     public void schreibeKommentar() {
-
-    }
-}
+    }}
