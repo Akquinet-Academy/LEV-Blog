@@ -1,18 +1,33 @@
 package de.brightslearning.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 @Entity
+@Table(name = "beitrag")
 public class Beitrag {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+    @Column(name = "titel")
+    private String titel;
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private Person person;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "datum", columnDefinition = "DATE")
+    private LocalDate datum;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "text")
+    private String text;
 
-    public Long getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "beitrag", cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "kommentar_id")
+    private List<Kommentar> kommentare;
+
+
+
+
 }
