@@ -26,6 +26,6 @@ public class Comment {
     private User user;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "comment_id")
+    @JoinColumn(name = "post_id")
     private Post post;
 }
