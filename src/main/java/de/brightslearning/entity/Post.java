@@ -30,7 +30,7 @@ public class Post {
     private String text;
 
     @OneToMany(mappedBy = "post", cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "comment_id")
+//    @JoinColumn(name = "comment_id")
     private List<Comment> comments;
 
     public Post() {
