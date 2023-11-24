@@ -7,27 +7,31 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "beitrag")
-public class Beitrag {
+@Table(name = "post")
+public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "titel")
-    private String titel;
+
+    @Column(name = "title")
+    private String title;
+
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "datum", columnDefinition = "DATE")
-    private LocalDate datum;
+    @Column(name = "date", columnDefinition = "DATE")
+    private LocalDate date;
 
     @Column(name = "text")
     private String text;
 
-    @OneToMany(mappedBy = "beitrag", cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "kommentar_id")
-    private List<Kommentar> kommentare;
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.REFRESH})
+    @JoinColumn(name = "comment_id")
+    private List<Comment> comments;
 
 
 

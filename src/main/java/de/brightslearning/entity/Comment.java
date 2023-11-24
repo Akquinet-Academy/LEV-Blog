@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "kommentar")
-public class Kommentar {
+@Table(name = "comment")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -16,12 +16,12 @@ public class Kommentar {
     private String text;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "datum", columnDefinition = "DATE")
-    private LocalDate datum;
+    @Column(name = "date", columnDefinition = "DATE")
+    private LocalDate date;
     @ManyToOne (cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "beitrag_id")
-    private Beitrag beitrag;
+    @JoinColumn(name = "post_id")
+    private Post post;
 }

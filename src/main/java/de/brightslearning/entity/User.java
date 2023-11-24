@@ -2,10 +2,13 @@ package de.brightslearning.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 
 @Entity
 @Table(name = "user")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -13,12 +16,27 @@ public class User {
 
     @Column(name = "username")
     private String username;
+
     @Column(name = "password")
     private String password;
 
-    public User() {
+    @Column(name = "is_admin")
+    private boolean isAdmin;
 
+    @Override
+    public String toString() {
+        return username;
     }
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REFRESH)
+    private List<Comment> comments;
+
+    public User() {
+    }
+
+    public void writeComment() {
+    }
+
 
     public int getId() {
         return id;

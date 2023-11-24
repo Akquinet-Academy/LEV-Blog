@@ -1,15 +1,14 @@
 package de.brightslearning.service;
 
-import de.brightslearning.entity.Kommentar;
+import de.brightslearning.entity.Comment;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
 public interface KommentarService {
-    List<Kommentar> findAll();
+    List<Comment> findAll();
 
-    Optional<Kommentar> findById(Integer kommentarId);
+    Optional<Comment> findById(Integer kommentarId);
 
 
 }
