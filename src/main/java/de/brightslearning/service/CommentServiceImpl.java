@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findByPostIdOrderByDate(Integer postId) {
-        return findByPostIdOrderByDate(postId);
+    public List<Comment> findByPostIdOrderByDateAsc(Integer postId) {
+        return commentRepository.findByPostIdOrderByDateAsc(postId);
     }
 }

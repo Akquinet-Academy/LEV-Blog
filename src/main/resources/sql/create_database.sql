@@ -20,8 +20,7 @@ CREATE TABLE post (
     title VARCHAR(50),
     user_id INTEGER,
     date DATE,
-    text VARCHAR(50),
-
+    text VARCHAR(50)
 );
 
 CREATE TABLE character (

@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface CommentService {
     List<Comment> findAll();
 
-    Optional<Comment> findById(Integer kommentarId);
+    Optional<Comment> findById(Integer commentId);
 
-    List<Comment> findByPostIdOrderByDate(Integer postId);
+    List<Comment> findByPostIdOrderByDateAsc(Integer postId);
 
 
 }
