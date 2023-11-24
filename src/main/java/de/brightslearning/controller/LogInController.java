@@ -14,13 +14,14 @@ import java.util.Optional;
 @Controller
 public class LogInController {
 
-private SessionRepository sessionRepository;
-private UserRepository userRepository;
+private final SessionRepository sessionRepository;
+private final UserRepository userRepository;
 
     public LogInController(SessionRepository sessionRepository, UserRepository userRepository) {
         this.sessionRepository = sessionRepository;
         this.userRepository = userRepository;
     }
+
 //    public LogInController() {
 //    }
 
@@ -32,10 +33,10 @@ private UserRepository userRepository;
             sessionRepository.save(session);
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
-// Login erfolgreich
+            // Login erfolgreich
             return "redirect:/";
         }
-// Login nicht erfolgreich
+        // Login nicht erfolgreich
         return "login";
     }
 
