@@ -34,6 +34,7 @@ public class Post {
     private List<Comment> comments;
 
 
-
-
+    public int getId() {
+        return this.id;
+    }
 }

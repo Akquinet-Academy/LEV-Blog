@@ -28,7 +28,6 @@ private final UserRepository userRepository;
 
 //    public LogInController() {
 //    }
-    @Autowired
     @PostMapping("/login")
     public String login(@ModelAttribute(name = "username") String username, @ModelAttribute(name = "password") String password, HttpServletResponse response) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
