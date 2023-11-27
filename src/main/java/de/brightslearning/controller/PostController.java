@@ -26,6 +26,7 @@ public class PostController {
 
     @GetMapping(value = "/")
     public String allPosts(Model model) {
+//        List<Post> postList = postService.findByOrderByDateDesc();
         List<Post> postList = postService.findAll();
         model.addAttribute("postList", postList);
         return "index";
