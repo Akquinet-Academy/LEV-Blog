@@ -128,9 +128,3 @@ label{
     font-family: 'Nunito', sans-serif;
     font-size: 0.9rem;
 }
-.hier{
-    color: rgba(83, 168, 182, 0.5);
-}
-.hier:hover{
-    color: rgba(255, 206, 206, 0.5);
-}

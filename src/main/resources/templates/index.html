@@ -35,7 +35,7 @@
             <a class="navbar-item">
                 HOME
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" th:href="@{/aboutus}">
                 ABOUT US
             </a>
         </div>
@@ -48,7 +48,7 @@
                 <a class="button b-nav is-primary">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light">
+                <a class="button b-nav is-light" th:href="@{/login}">
                     LOG IN
                 </a>
             </div>
@@ -65,6 +65,7 @@
     <p class="home2">LIFESTYLE</p>
     <p class="home2">TRAVEL</p>
 </div>
+
 <br>
 <div class="columns">
     <div class="column is-full has-text-centered">

@@ -47,4 +47,5 @@ public class PostController {
 //        return "redirect:/";
         return "index";
     }
+
 }
