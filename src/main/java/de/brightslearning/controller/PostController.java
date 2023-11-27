@@ -3,6 +3,7 @@ package de.brightslearning.controller;
 import de.brightslearning.entity.Post;
 import de.brightslearning.service.PostService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,38 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/blog")
+@RequestMapping(value = "/")
 public class PostController {
 
-  private PostService postService;
+   private final PostService postService;
 
     public PostController(PostService postService) {
         this.postService = postService;
     }
 
-    @GetMapping(value = "blog/allposts")
+    @GetMapping(value = "/")
     public String allPosts(Model model) {
         List<Post> postList = postService.findAll();
-
         model.addAttribute("postList", postList);
-
-        return "blog/allposts";
+        return "index";
     }
-    @PostMapping(value = "/allposts")
+
+    @PostMapping(value = "/")
     public String store(@Valid @ModelAttribute("posts") Post post, BindingResult result) {
         if (result.hasErrors()) {
-            return "post";
+            return "index";
         }
-
         postService.save(post);
-
-        return "redirect:/blog/allposts/post";
+//        return "redirect:/";
+        return "index";
     }
 
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute(name = "post") Post post) {
         postService.deleteById(post.getId());
-
-        return "redirect:/blog/post";
+//        return "redirect:/";
+        return "index";
     }
 }

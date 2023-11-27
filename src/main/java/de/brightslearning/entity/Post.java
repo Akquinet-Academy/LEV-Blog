@@ -19,7 +19,7 @@ public class Post {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private User user;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

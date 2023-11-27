@@ -22,7 +22,7 @@ public class Comment {
     private LocalDate date;
 
     @ManyToOne (cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private User user;
 
     @ManyToOne(cascade = CascadeType.REFRESH)

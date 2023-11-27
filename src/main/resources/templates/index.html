@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{/fragments/head :: head(title='Series')}">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lev-Blog</title>
@@ -75,7 +75,7 @@
 <container class="container is-widescreen has-text-centered">
     <section class="section">
         <div class="columns is-multiline" th:each="post: ${postList}">
-            <!-- <a href="post/{post.id}"> -->
+             <a href="post/{post.id}">
             <div class="column is-one-third">
                 <div class="card blog">
                     <div class="card-image">
