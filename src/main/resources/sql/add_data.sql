@@ -1,6 +1,6 @@
-DELETE FROM "user";
-DELETE FROM post;
-DELETE FROM comment;
+-- DELETE FROM "user";
+-- DELETE FROM post;
+-- DELETE FROM comment;
 
 ALTER SEQUENCE user_id_seq RESTART WITH 1;
 ALTER SEQUENCE post_id_seq RESTART WITH 1;
