@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{/fragments/head :: head(title='Series')}">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lev-Blog</title>
@@ -18,7 +18,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img class="pen"  src="pen.png">
+            <img class="pen"  th:src="@{/images/pen.png}" alt="pen">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -52,50 +52,41 @@
             </div>
         </div>
     </div>
-    </div>
 </nav>
 <br>
-<container class="container is-widescreen has-text-centered">
+<p class="container is-widescreen has-text-centered">
     <section class="section">
-        <div class="columns" th:each="post: ${postList}">
-            <!-- <a href="post/{post.id}"> -->
+        <div class="columns" th:object="${thisPost}">
             <div class="column is-full">
                 <div class="card blog">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img class="image" src="Gartenparty.jpg" alt="Placeholder image">
+                            <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
+                            <!-- TODO <img th:src="${post.picture}" alt="Image to illustrate blog post">-->
+
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="content">
+                            <p th:field="*{user}"></p>
                             <br>
-                            <h2>Unsere Gartenparty: Die Grillsaison ist eröffnet!</h2>
+                            <h2 th:field="*{title}"></h2>
                             <br><br>
-                            <p class="text">Der Sommer ist die perfekte Zeit für gesellige Zusammenkünfte im Freien. Letztes Wochenende haben wir eine unvergessliche Gartenparty veranstaltet, die mit Lachen, köstlichem Essen und fröhlichen Gesprächen gefüllt war. Hier ist ein Rückblick auf dieses sonnige Fest unter freiem Himmel.
-                                <br><br>
-                                Die Vorbereitungen begannen Tage im Voraus, als wir den Garten in eine festliche Oase verwandelten. Bunte Lichterketten schmückten Bäume und Zäune, während gemütliche Sitzgelegenheiten und Decken für eine entspannte Atmosphäre sorgten. Die Auswahl der Speisen und Getränke war ebenso wichtig, mit einer Mischung aus Grillgerichten, erfrischenden Salaten und sommerlichen Cocktails.
-                                <br><br>
-                                Mit Einbruch der Dämmerung tauchten Lichterketten den Garten in ein warmes Glühen. Das fröhliche Lachen der Gäste vermischte sich mit der sanften Hintergrundmusik, während die Grillen im Hintergrund zirpten. Die luftige Sommerbrise trug dazu bei, eine entspannte Stimmung zu schaffen, perfekt für angeregte Unterhaltungen und das Teilen von Geschichten.
-                                <br><br>
-                                Die kulinarischen Höhepunkte der Gartenparty waren zweifellos die gegrillten Köstlichkeiten. Saftige Burger, mariniertes Gemüse und perfekt gegrillte Hähnchenspieße wurden von einem Buffet frischer Salate und Beilagen begleitet. Und natürlich dürfen wir die erfrischenden Sommerdesserts nicht vergessen, die die Gäste begeisterten.
-                                <br><br>
-                                Um die Stimmung aufrechtzuerhalten, hatten wir eine Auswahl an Spielen und Aktivitäten vorbereitet. Von Gartenspielen wie Cornhole bis hin zu einer improvisierten Tanzfläche unter den Sternen – es gab für jeden etwas Passendes. Die Gäste konnten sich am Lagerfeuer versammeln, um Geschichten zu teilen und Marshmallows zu rösten, während der Himmel sich langsam mit Sternen füllte.
-                            </p>
+                            <p class="text" th:text="*{text}"></p>
                             <br>
-                            <time class="datum" datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                            <time class="datum" th:text="*{date}"></time>
                         </div>
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-full has-text-centered">
-                        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>
-                        <a th:href="@{/newpost}" class="button b is-primary">DELETE POST</a>
-                    </div>
+<!--                    <div class="column is-full has-text-centered">-->
+<!--                        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
+<!--                        <a th:href="@{/newpost}" class="button b is-primary">DELETE POST</a>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
     </section>
-</container>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>
