@@ -69,16 +69,16 @@
 <div class="columns">
     <div class="column is-full has-text-centered">
 <!--        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
-<!--        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>-->
-        <a class="button b is-primary">NEW POST</a>
-<!--        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>-->
-        <a class="button b is-primary">ORDER POSTS</a>
+        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>
+<!--        <a class="button b is-primary">NEW POST</a>-->
+        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>
+<!--        <a class="button b is-primary">ORDER POSTS</a>-->
     </div>
 </div>
 <div class="container is-widescreen has-text-centered">
-    <section class="section">
-<!--        <div class="columns is-multiline" th:each="post: ${postList}">-->
-        <div class="columns is-multiline">
+    <p class="section">
+        <div class="columns" th:each="post : ${postList}">
+<!--        <div class="columns is-multiline">-->
 <!--             <a href="post/{post.id}">-->
             <div class="column is-one-third">
                 <div class="card blog">
@@ -89,54 +89,55 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <h2>Unsere Gartenparty: Die Grillsaison ist eröffnet!</h2>
+                            <h2 th:text="${post.title}"></h2>
                             <br>
-                            <p>Sommer, Sonne, Grillsaison!</p>
+                            <p th:text="${post.text}"></p>
                             <br><br><br>
-                            <time class="datum" datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+<!--                            <time class="datum" th:date>11:09 PM - 1 Jan 2016</time>-->
+                            <time class="datum" th:text="${post.date}"></time>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- </a> -->
-            <div class="column is-one-third">
-                <div class="card blog">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img th:src="@{/images/australien-1.jpg}" alt="Placeholder image">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            <h2>Urlaub in Down Under: unsere Reise nach Australien</h2>
-                            <br>
-                            <p> Die schönsten Strände</p>
-                            <br><br><br>
-                            <time class="datum" datetime="2016-1-1">12:01 PM - 5 Sep 2018</time>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="column is-one-third">
-                <div class="card blog">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img th:src="@{/images/pen.png}" alt="Placeholder image">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            <h2>Bücher, Bücher, Bücher! Was wir diesen Sommer lesen</h2>
-                            <br>
-                            <p>Genres von A bis Z</p>
-                            <br><br><br>
-                            <time class="datum" datetime="2016-1-1">08:10 PM - 10 Sep 2003</time>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!--            <div class="column is-one-third">-->
+<!--                <div class="card blog">-->
+<!--                    <div class="card-image">-->
+<!--                        <figure class="image is-4by3">-->
+<!--                            <img th:src="@{/images/australien-1.jpg}" alt="Placeholder image">-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                    <div class="card-content">-->
+<!--                        <div class="content">-->
+<!--                            <h2>Urlaub in Down Under: unsere Reise nach Australien</h2>-->
+<!--                            <br>-->
+<!--                            <p> Die schönsten Strände</p>-->
+<!--                            <br><br><br>-->
+<!--                            <time class="datum" datetime="2016-1-1">12:01 PM - 5 Sep 2018</time>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="column is-one-third">-->
+<!--                <div class="card blog">-->
+<!--                    <div class="card-image">-->
+<!--                        <figure class="image is-4by3">-->
+<!--                            <img th:src="@{/images/pen.png}" alt="Placeholder image">-->
+<!--                        </figure>-->
+<!--                    </div>-->
+<!--                    <div class="card-content">-->
+<!--                        <div class="content">-->
+<!--                            <h2>Bücher, Bücher, Bücher! Was wir diesen Sommer lesen</h2>-->
+<!--                            <br>-->
+<!--                            <p>Genres von A bis Z</p>-->
+<!--                            <br><br><br>-->
+<!--                            <time class="datum" datetime="2016-1-1">08:10 PM - 10 Sep 2003</time>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 </div>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
