@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+//@RequestMapping(value = "/post")
+
 public class PostController {
 
    private final PostService postService;
@@ -28,15 +30,19 @@ public class PostController {
         model.addAttribute("postList", postList);
         return "index";
     }
+    @GetMapping(value = "/newpost")
+    public String newPost(Model model) {
+        Post post = new Post();
+        model.addAttribute("post", post);
+//        List<Post> postList = postService.findAll();
+//        model.addAttribute("postList", postList);
+        return "newpost";
+    }
 
     @PostMapping(value = "/newpost")
-    public String store(@Valid @ModelAttribute("posts") Post post, BindingResult result) {
-        if (result.hasErrors()) {
-            return "index";
-        }
+    public String store(@ModelAttribute("post") Post post) {
         postService.save(post);
-//        return "redirect:/";
-        return "index";
+        return "redirect:/";
     }
 
     @PostMapping(value = "/delete")
