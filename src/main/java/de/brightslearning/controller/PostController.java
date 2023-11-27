@@ -61,6 +61,8 @@ public class PostController {
             List<Comment> commentList = thisPost.getComments();
             model.addAttribute("thisPost", thisPost);
             model.addAttribute("commentList", commentList);
+            Comment newComment = new Comment();
+            model.addAttribute("newComment", newComment);
             return "post";
         }
         return "index";
