@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(value = "/")
 public class PostController {
 
    private final PostService postService;
@@ -30,7 +29,7 @@ public class PostController {
         return "index";
     }
 
-    @PostMapping(value = "/")
+    @PostMapping(value = "/newpost")
     public String store(@Valid @ModelAttribute("posts") Post post, BindingResult result) {
         if (result.hasErrors()) {
             return "index";
@@ -48,11 +47,11 @@ public class PostController {
     }
 
     @GetMapping("/post/{id}")
-    @ResponseBody
     public String showPostDetails(@PathVariable int id, Model model) {
         Optional<Post> optionalPost = postService.findById(id);
         if (optionalPost.isPresent()) {
-            model.addAttribute("thisPost", optionalPost);
+            Post thisPost = postService.findById(id).orElseThrow();
+            model.addAttribute("thisPost", thisPost);
             return "post";
         }
         return "index";

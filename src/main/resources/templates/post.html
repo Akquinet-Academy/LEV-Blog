@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="~{/fragments/head :: head(title='Series')}">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lev-Blog</title>
@@ -18,7 +18,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img class="pen"  src="pen.png">
+            <img class="pen"  th:src="@{/images/pen.png}" alt="pen">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -52,7 +52,6 @@
             </div>
         </div>
     </div>
-    </div>
 </nav>
 <br>
 <p class="container is-widescreen has-text-centered">
@@ -62,28 +61,28 @@
                 <div class="card blog">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img class="image" src="Gartenparty.jpg" alt="Placeholder image">
+                            <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
                             <!-- TODO <img th:src="${post.picture}" alt="Image to illustrate blog post">-->
 
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            <p th:text="${post.user}"></p>
+                            <p th:field="*{user}"></p>
                             <br>
-                            <h2 th:text="${post.title}"></h2>
+                            <h2 th:field="*{title}"></h2>
                             <br><br>
-                            <p class="text" th:text="${post.text}"></p>
+                            <p class="text" th:text="*{text}"></p>
                             <br>
-                            <time class="datum" th:text="${post.date}"></time>
+                            <time class="datum" th:text="*{date}"></time>
                         </div>
                     </div>
                 </div>
                 <div class="columns">
-                    <div class="column is-full has-text-centered">
-                        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>
-                        <a th:href="@{/newpost}" class="button b is-primary">DELETE POST</a>
-                    </div>
+<!--                    <div class="column is-full has-text-centered">-->
+<!--                        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
+<!--                        <a th:href="@{/newpost}" class="button b is-primary">DELETE POST</a>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
