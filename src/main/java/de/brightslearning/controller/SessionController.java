@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class SessionController {
 
-    private final SessionRepository sessionRepository;
+   /* private final SessionRepository sessionRepository;
 
     public SessionController(SessionRepository sessionRepository) {
         this.sessionRepository = sessionRepository;
@@ -23,5 +23,5 @@ public class SessionController {
         Cookie newCookie = new Cookie("food", food);
         response.addCookie(newCookie);
         return "home";
-    }
+    }*/
 }
