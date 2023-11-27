@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/index.css">
     <link th:href="@{/css/index.css}" rel="stylesheet"/>
 
 </head>
@@ -37,7 +36,7 @@
             <a class="navbar-item">
                 HOME
             </a>
-            <a class="navbar-item">
+            <a class="navbar-item" th:href="@{/about}">
                 ABOUT US
             </a>
         </div>
@@ -47,10 +46,12 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button b-nav is-primary">
+                <a class="button b-nav is-primary"
+                th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light">
+                <a class="button b-nav is-light"
+                   th:href="@{/login}">
                     LOG IN
                 </a>
             </div>
@@ -62,11 +63,11 @@
         <h1>BLOGPOSTS</h1>
     </div>
 </div>
-<div class="home">
-    <p class="home2">BOOKS</p>
-    <p class="home2">LIFESTYLE</p>
-    <p class="home2">TRAVEL</p>
-</div>
+<!--<div class="home">-->
+<!--    <p class="home2">BOOKS</p>-->
+<!--    <p class="home2">LIFESTYLE</p>-->
+<!--    <p class="home2">TRAVEL</p>-->
+<!--</div>-->
 <br>
 <div class="columns">
     <div class="column is-full has-text-centered">
@@ -80,23 +81,28 @@
     </div>
 </div>
 <div class="container is-widescreen has-text-centered">
-    <div class="columns is-multiline" th:each="post : ${postList}">
+    <div class="columns is-multiline is-mobile" >
 
-        <div class="column is-one-third">
+        <div class="column is-one-third" th:each="post : ${postList}">
             <div class="card blog">
                 <a th:href="@{/post/{path}(path=${post.id})}">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
-                            <!-- TODO <img th:src="${post.picture}" alt="Image to illustrate blog post">-->
+<!--                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
+                            <img th:src="${post.image}" alt="Image to illustrate blog post">
                         </figure>
                     </div>
                     <div class="card-content">
                         <div class="content">
                             <h2 th:text="${post.title}"></h2>
                             <br>
-                            <p th:text="${post.text}"></p>
-                            <br><br><br>
+                            <a class="button"
+                               th:href="@{/post/{path}(path=${post.id})}">
+                                read & comment
+                            </a>
+                            <br>
+<!--                            <p th:text="${post.text}"></p>-->
+<!--                            <br><br><br>-->
                             <time class="datum" th:text="${post.date}"></time>
                             <p th:text="${post.user}"></p>
                         </div>
