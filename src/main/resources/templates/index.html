@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lev-Blog</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -13,12 +12,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+
 </head>
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item">
-            <img class="pen"  src="pen.png">
+            <img class="pen" th:src="@{/images/pen.png}" alt="pen">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -52,7 +54,6 @@
             </div>
         </div>
     </div>
-    </div>
 </nav>
 <div class="columns">
     <div class="column is-full has-text-centered">
@@ -67,20 +68,23 @@
 <br>
 <div class="columns">
     <div class="column is-full has-text-centered">
-        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>
-        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>
-        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>
+<!--        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
+<!--        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>-->
+        <a class="button b is-primary">NEW POST</a>
+<!--        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>-->
+        <a class="button b is-primary">ORDER POSTS</a>
     </div>
 </div>
-<container class="container is-widescreen has-text-centered">
+<div class="container is-widescreen has-text-centered">
     <section class="section">
-        <div class="columns is-multiline" th:each="post: ${postList}">
-             <a href="post/{post.id}">
+<!--        <div class="columns is-multiline" th:each="post: ${postList}">-->
+        <div class="columns is-multiline">
+<!--             <a href="post/{post.id}">-->
             <div class="column is-one-third">
                 <div class="card blog">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="Gartenparty.jpg" alt="Placeholder image">
+                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
@@ -99,7 +103,7 @@
                 <div class="card blog">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="australien-1.jpg" alt="Placeholder image">
+                            <img th:src="@{/images/australien-1.jpg}" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
@@ -117,7 +121,7 @@
                 <div class="card blog">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img src="reading.jpg" alt="Placeholder image">
+                            <img th:src="@{/images/pen.png}" alt="Placeholder image">
                         </figure>
                     </div>
                     <div class="card-content">
@@ -133,7 +137,7 @@
             </div>
         </div>
     </section>
-</container>
+</div>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>
