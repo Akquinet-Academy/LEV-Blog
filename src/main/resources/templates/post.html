@@ -67,8 +67,8 @@
             <div class="card blog  is-one-fifth-desktop">
                 <div class="card-image">
                     <figure class="image is-4by3">
-                        <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
-                        <!-- TODO <img th:src="${post.picture}" alt="Image to illustrate blog post">-->
+<!--                        <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
+                        <img th:src="*{image}" alt="Image to illustrate blog post">
 
                     </figure>
                 </div>

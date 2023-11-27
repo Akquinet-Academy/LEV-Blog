@@ -88,8 +88,8 @@
                 <a th:href="@{/post/{path}(path=${post.id})}">
                     <div class="card-image">
                         <figure class="image is-4by3">
-                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">
-                            <!-- TODO <img th:src="${post.picture}" alt="Image to illustrate blog post">-->
+<!--                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
+                            <img th:src="${post.image}" alt="Image to illustrate blog post">
                         </figure>
                     </div>
                     <div class="card-content">
