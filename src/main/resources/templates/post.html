@@ -95,16 +95,16 @@
                     </table>
                 </div>
 
-<!--                <form action="#" th:object="${newComment}" method="post">-->
-<!--                <input th:field="*{id}" type="hidden">-->
-<!--                <input th:field="*{user}" type="hidden">-->
-<!--                <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" type="hidden">-->
-<!--                <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"-->
-<!--                          th:field="*{text}"></textarea>-->
-<!--                <div class="column is-full has-text-centered is-t">-->
-<!--                    <button class="button b is-primary" type="submit">SEND</button>-->
-<!--                </div>-->
-<!--            </form>-->
+                <form action="#" th:action="@{.}" th:object="${newComment}" method="post">
+                <input th:field="*{id}" type="hidden">
+                <input th:field="*{user}" type="hidden">
+                <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" type="hidden">
+                <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"
+                          th:field="*{text}"></textarea>
+                <div class="column is-full has-text-centered is-t">
+                    <button class="button b is-primary" type="submit">SEND</button>
+                </div>
+                </form>
 
 
             </div>

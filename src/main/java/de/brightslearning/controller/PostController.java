@@ -2,12 +2,10 @@ package de.brightslearning.controller;
 
 import de.brightslearning.entity.Comment;
 import de.brightslearning.entity.Post;
+import de.brightslearning.service.CommentService;
 import de.brightslearning.service.PostService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,9 +17,11 @@ import java.util.Optional;
 public class PostController {
 
    private final PostService postService;
+   private final CommentService commentService;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
+        this.commentService = commentService;
     }
 
     @GetMapping(value = "/")
@@ -66,5 +66,11 @@ public class PostController {
             return "post";
         }
         return "index";
+    }
+
+    @PostMapping("/post/{id}")
+    public String store(@PathVariable int id, @ModelAttribute("comment") Comment comment) {
+        commentService.save(comment);
+        return "/post/{id}";
     }
 }
