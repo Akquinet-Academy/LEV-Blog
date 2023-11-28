@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{../blog}">
+        <a class="navbar-item" th:href="@{/}">
             <img class="pen" th:src="@{/images/pen.png}" alt="pen"/>
         </a>
 
@@ -32,7 +32,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{../blog}">
+            <a class="navbar-item" th:href="@{/}">
                 HOME
             </a>
             <a class="navbar-item" th:href="@{../about}">
@@ -103,12 +103,14 @@
                         </tr>
                     </table>
                 </div>
-                <div class="column is-full has-text-centered is-t">
-                    <button class="button b is-primary"
-                            type="submit"
 
-                    >EDIT</button>
-                    <a class="button b is-primary" th:href="@{/}">DELETE</a>
+
+                <div class="columns" th:if="${sessionUser} != null">
+                    <div class="column is-full has-text-centered" th:if="${sessionUser.isAdmin}">
+                        <a class="button b is-primary" th:href="@{/delete(postId=${thisPost.id})}">DELETE</a>
+                        <!--        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>-->
+                        <a class="button b is-primary">EDIT</a>
+                    </div>
                 </div>
 
 

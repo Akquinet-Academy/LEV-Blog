@@ -72,7 +72,7 @@
                 <td th:text="${siteUser.username}" class="has-text-right"/>
                 <td th:text="${siteUser.isAdmin}" class="has-text-centered"/>
                 <td>
-                    <button type="submit" th:unless="${siteUser.isAdmin}" th:href="@{/users/makeAdmin/{userId}(userId=${siteUser.getId()})}" th:action="@{/users/makeAdmin/{userId}(userId=${siteUser.getId()})}" class="button is-info">
+                    <button type="submit" th:unless="${siteUser.isAdmin}" th:href="@{/users/makeAdmin/{userId}(userId=${siteUser.getId()})}" class="button is-info">
                         <span class="icon">
                             <span class="mdi mdi-account-check"></span>
                         </span>
