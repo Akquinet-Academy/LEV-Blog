@@ -54,7 +54,7 @@
                 </a>
 
                 <a class="button b-nav is-light"
-                   th:href="@{/login}">
+                   th:href="@{/login}" th:text="${username}">
 
                     LOG IN
                 </a>
@@ -62,6 +62,9 @@
         </div>
     </div>
 </nav>
+<p th:text="${username}">erg</p>
+<p>TESTTT</p>
+
 <div class="columns">
     <div class="column is-full has-text-centered">
         <h1>BLOGPOSTS</h1>

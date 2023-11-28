@@ -22,6 +22,8 @@ public class Session {
     }
 
     public Session(User user, Instant instant) {
+        this.user = user;
+        this.expiresAt = instant;
     }
 
     public String getId() {
