@@ -54,7 +54,7 @@
                 </a>
 
                 <a class="button b-nav is-light"
-                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'Logged in as ' + username}">
+                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username)}">
 
                     LOG IN
                 </a>
