@@ -29,4 +29,8 @@ public class CommentService {
     public List<Comment> findByPostIdOrderByDateAsc(Integer postId) {
         return commentRepository.findByPostIdOrderByDateAsc(postId);
     }
+
+    public void save(Comment comment) {
+        commentRepository.save(comment);
+    }
 }
