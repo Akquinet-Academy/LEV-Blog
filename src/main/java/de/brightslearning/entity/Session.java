@@ -13,6 +13,7 @@ public class Session {
     @Column(name = "id")
     private String id = UUID.randomUUID().toString();
     @ManyToOne
+    @JoinColumn(name="users_id")
     private User user;
     @Column(name = "expires_at")
     private Instant expiresAt;

@@ -36,6 +36,18 @@ CREATE TABLE post
 --     comment_id INTEGER REFERENCES comment (id) -- Uncommented this line
 );
 
+CREATE TABLE session
+(
+    id text PRIMARY KEY ,
+    expires_at DATE,
+    users_id INTEGER
+);
+
+ALTER TABLE post
+    ADD CONSTRAINT fk_post_session
+        FOREIGN KEY (users_id)
+            REFERENCES users (id);
+
 ALTER TABLE post
     ADD CONSTRAINT fk_post_user
         FOREIGN KEY (users_id)
