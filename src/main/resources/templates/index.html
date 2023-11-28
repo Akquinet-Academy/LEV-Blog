@@ -72,21 +72,13 @@
     </div>
 </div>
 
-<!--<div class="home">-->
-<!--    <p class="home2">BOOKS</p>-->
-<!--    <p class="home2">LIFESTYLE</p>-->
-<!--    <p class="home2">TRAVEL</p>-->
-<!--</div>-->
 
 <br>
 <div class="columns">
     <div class="column is-full has-text-centered">
-<!--        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
-<!--        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>-->
-        <a class="button b is-primary" th:href="@{/newpost}"
+        <a class="button b is-primary" th:href="@{/newpost}" th:if="${isAdmin}"
 
         >NEW POST</a>
-<!--        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>-->
         <a class="button b is-primary">ORDER POSTS</a>
     </div>
 </div>
