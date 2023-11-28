@@ -7,14 +7,12 @@ import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
 import de.brightslearning.service.UserService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -46,6 +44,13 @@ private final UserRepository userRepository;
         }
         // Login nicht erfolgreich
         return "login";
+    }
+    @PostMapping("/logout")
+    public String logout(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, HttpServletResponse response) {
+        sessionRepository.deleteById(sessionId);
+        Cookie cookie = new Cookie("sessionId", null);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 
     @GetMapping(value = "/login")
