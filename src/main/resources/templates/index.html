@@ -53,6 +53,12 @@
                 </a>
                 <a class="button b-nav is-light" id="dropButton" onclick="dropDown()">
                     LOG IN  <i class="fa fa-caret-down"></i>
+
+                <a class="button b-nav is-light"
+                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username)}">
+                </a>
+                <a class="button b-nav is-light"
+                   th:if="${username != null}">LOG OUT
                 </a>
                 <div class="dropdown" id="dropContent">
                     <form  name="logoutForm" th:action="@{/logout}" method="post">
@@ -63,6 +69,7 @@
         </div>
     </div>
 </nav>
+
 <div class="columns">
     <div class="column is-full has-text-centered">
         <h1>BLOGPOSTS</h1>

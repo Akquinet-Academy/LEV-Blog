@@ -31,13 +31,14 @@ private final UserRepository userRepository;
 //    public LogInController() {
 //    }
     @PostMapping("/login")
-    public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response) {
+    public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response, Model model) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (optionalUser.isPresent()) {
             Session session = new Session(optionalUser.get(), Instant.now().plusSeconds(7*24*60*60));
             sessionRepository.save(session);
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
+//            model.addAttribute("username", "user.getUsername()");
             // Login erfolgreich
             return "redirect:/";
         }
