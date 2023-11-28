@@ -84,16 +84,19 @@
                 </div>
 
                 <div class="card-content" th:each="comment : ${commentList}">
-                    <table class="table">
+                    <table class="table is-striped">
                         <tr>
                             <td th:text="${comment.date}"/>
-                            <td th:text="${comment.user}"/>
+                            <td th:text="${comment.user}" class="has-text-weight-bold"/>
                         </tr>
                         <tr>
+                            <td></td>
                             <td th:text="${comment.text}"/>
                         </tr>
                     </table>
                 </div>
+
+                <br>
 
                 <form action="#" th:action="@{.}" th:object="${newComment}" method="post">
                     <input th:field="*{id}" type="hidden">
