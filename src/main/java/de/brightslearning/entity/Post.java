@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,9 @@ public class Post {
     @Column(name = "date", columnDefinition = "DATE")
     private LocalDateTime date;
 
+    @Column(name = "prettydate")
+    private String prettydate;
+
     @Column(name = "text")
     private String text;
 
@@ -44,6 +48,9 @@ public class Post {
         this.user = user;
         this.date = date;
         this.text = text;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        this.prettydate = date.format(formatter);
     }
 
     public int getId() {

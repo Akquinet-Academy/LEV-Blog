@@ -80,6 +80,7 @@
                         <br>
                         <p>By: <span th:text="*{user}"></span></p>
                         <time class="datum" th:text="*{date}"></time>
+<!--                        <time class="datum" th:text="*{prettydate}"></time>-->
                     </div>
                 </div>
 
@@ -87,6 +88,7 @@
                     <table class="table is-striped">
                         <tr>
                             <td th:text="${comment.date}"/>
+<!--                            <td th:text="${comment.prettydate}"/>-->
                             <td th:text="${comment.user}" class="has-text-weight-bold"/>
                         </tr>
                         <tr>

@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "comment")
@@ -20,6 +21,9 @@ public class Comment {
 
     @Column(name = "date", columnDefinition = "DATE")
     private LocalDateTime date;
+
+    @Column(name = "prettydate")
+    private String prettydate;
 
     @ManyToOne (cascade = CascadeType.REFRESH)
     @JoinColumn(name = "users_id")
@@ -37,6 +41,9 @@ public class Comment {
         this.date = date;
         this.user = user;
         this.post = post;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        this.prettydate = date.format(formatter);
     }
 
     public int getId() {
