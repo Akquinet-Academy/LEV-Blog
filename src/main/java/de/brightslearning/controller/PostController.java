@@ -31,6 +31,7 @@ public class PostController {
         model.addAttribute("postList", postList);
         return "index";
     }
+
     @GetMapping(value = "/newpost")
     public String newPost(Model model) {
         Post post = new Post();
@@ -59,8 +60,7 @@ public class PostController {
             List<Comment> commentList = thisPost.getComments();
             model.addAttribute("thisPost", thisPost);
             model.addAttribute("commentList", commentList);
-            Comment newComment = new Comment();
-            model.addAttribute("newComment", newComment);
+            model.addAttribute("newComment", new Comment());
             return "post";
         }
         return "index";
