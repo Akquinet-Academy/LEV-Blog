@@ -1,19 +1,24 @@
 package de.brightslearning.controller;
 
+import de.brightslearning.entity.Post;
 import de.brightslearning.entity.Session;
 import de.brightslearning.repository.SessionRepository;
 import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
+import de.brightslearning.service.UserService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Instant;
 import java.util.Optional;
+
 @Controller
 public class LogInController {
 
@@ -41,18 +46,28 @@ private final UserRepository userRepository;
         // Login nicht erfolgreich
         return "login";
     }
+
     @GetMapping(value = "/login")
     public String getLoginTemplate(Model model){
         model.addAttribute("user",new User());
         return "login";
     }
-    @GetMapping(value="/signup")
-    public String getSignUpTemplate(){
-        return "signup";
-    }
+
     @GetMapping(value="/about")
     public String getAboutUs(){
         return "about";
+    }
+
+    @GetMapping("/signup")
+    public String newUser(Model model) {
+        model.addAttribute("user", new User());
+        return "signup";
+    }
+
+    @PostMapping("/signup")
+    public String store(@ModelAttribute("user") User user) {
+        userRepository.save(user);
+        return "redirect:/";
     }
 
 }
