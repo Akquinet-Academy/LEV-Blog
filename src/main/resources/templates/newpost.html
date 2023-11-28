@@ -87,10 +87,10 @@
                 <div class="card blog">
                     <br>
                     <form action="#" th:action="@{/newpost}" th:object="${post}" method="post">
-                        <input th:field="*{id}" type="hidden">
-                        <input th:field="*{user}" type="hidden">
-                        <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
-                               type="hidden">
+<!--                        <input th:field="*{id}" type="hidden">-->
+<!--                        <input th:field="*{user}" type="hidden">-->
+<!--                        <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"-->
+<!--                               type="hidden">-->
 
 
                         <input class="input" maxlength="1000" placeholder="Link to image" th:field="*{image}"

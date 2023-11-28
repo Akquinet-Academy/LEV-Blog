@@ -107,7 +107,6 @@
                 <br>
 
                 <form th:action="@{/post/{id}/comment(id=${thisPost.id})}" th:object="${newComment}" method="post">
-                    <input th:field="*{date}" type="hidden" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
                     <label>
                     <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"
                         th:field="*{text}"></textarea>

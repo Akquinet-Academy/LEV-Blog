@@ -2,12 +2,14 @@ package de.brightslearning.controller;
 
 import de.brightslearning.entity.Comment;
 import de.brightslearning.entity.Post;
+import de.brightslearning.entity.User;
 import de.brightslearning.service.CommentService;
 import de.brightslearning.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +40,9 @@ public class PostController {
     }
 
     @PostMapping(value = "/newpost")
-    public String store(@ModelAttribute("post") Post post) {
+    public String store(@ModelAttribute("post") Post post, @ModelAttribute("sessionUser") User sessionUser) {
+        post.setDate(LocalDateTime.now());
+        post.setUser(sessionUser);
         postService.save(post);
         return "redirect:/";
     }
