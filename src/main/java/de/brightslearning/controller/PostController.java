@@ -58,9 +58,9 @@ public class PostController {
         Optional<Post> optionalPost = postService.findById(id);
         if (optionalPost.isPresent()) {
             Post thisPost = postService.findById(id).orElseThrow();
-            List<Comment> commentList = thisPost.getComments();
+//            List<Comment> commentList = thisPost.getComments();
             model.addAttribute("thisPost", thisPost);
-            model.addAttribute("commentList", commentList);
+//            model.addAttribute("commentList", commentList);
             return "post";
         }
         return "index";
