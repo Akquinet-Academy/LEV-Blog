@@ -49,10 +49,16 @@
                    th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light"
-                   th:href="@{/login}">
-                    LOG IN
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
+
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null" th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}">
                 </a>
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -106,7 +112,7 @@
 
                 <br>
 
-                <form action="#" th:object="${newComment}" method="post">
+                <form action="#" th:object="${newComment}" method="post" th:if="${sessionUser} != null">
                     <input th:field="*{id}" type="hidden">
                     <input th:field="*{user}" type="hidden">
                     <input th:field="*{post}" type="hidden" th:value="${thisPost.id}">
@@ -141,6 +147,14 @@
         <br>
         <span>© 2023 LEV-Blog</span>
     </div>
+    <script>
+        let content = document.getElementById("dropContent");
+
+        function dropDown(){
+            content.classList.toggle("showContent");
+        }
+    </script>
+
 </footer>
 </body>
 </html>
