@@ -60,13 +60,12 @@ private final UserRepository userRepository;
 
     @GetMapping("/signup")
     public String newUser(Model model) {
-        User newUser = new User();
-        model.addAttribute("user", newUser);
+        model.addAttribute("user", new User());
         return "signup";
     }
 
     @PostMapping("/signup")
-    public String signup(@ModelAttribute(name = "user") User user) {
+    public String store(@ModelAttribute("user") User user) {
         userRepository.save(user);
         return "redirect:/";
     }

@@ -63,16 +63,17 @@
     <div class="column form is-full has-text-centered">
         <form action="#" th:action="@{/signup}" th:object="${user}" method="post">
             <label for="username">USERNAME: </label>
-            <input type="text" id="username" name="username" required th:text="*{username}">
+            <input type="text" id="username" name="username" required th:field="*{username}">
             <br>
             <br>
             <label for="password">PASSWORD:</label>
-            <input type="password" id="password" name="password" required th:text="*{password}">
+            <input type="password" id="password" name="password" required th:field="*{password}">
             <br>
             <br>
-            <a class="button submitbutton b-nav is-light" th:href="@{/signup}">
+<!--            <a class="button submitbutton b-nav is-light" type="submit">-->
+            <button class="button is-light" type="submit">
                 SIGN UP
-            </a>
+            </button>
         </form>
     </div>
 </div>

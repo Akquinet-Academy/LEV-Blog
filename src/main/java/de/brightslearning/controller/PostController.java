@@ -35,8 +35,6 @@ public class PostController {
     public String newPost(Model model) {
         Post post = new Post();
         model.addAttribute("post", post);
-//        List<Post> postList = postService.findAll();
-//        model.addAttribute("postList", postList);
         return "newpost";
     }
 
