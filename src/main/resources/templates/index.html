@@ -55,8 +55,9 @@
 
                 <a class="button b-nav is-light"
                    th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username)}">
-
-                    LOG IN
+                </a>
+                <a class="button b-nav is-light"
+                   th:if="${username != null}">LOG OUT
                 </a>
             </div>
         </div>
