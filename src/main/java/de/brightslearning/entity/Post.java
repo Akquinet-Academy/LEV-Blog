@@ -15,6 +15,9 @@ public class Post {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "image")
+    private String image;
+
     @Column(name = "title")
     private String title;
 
@@ -89,5 +92,13 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
