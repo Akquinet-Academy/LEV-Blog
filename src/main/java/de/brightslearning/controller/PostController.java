@@ -71,6 +71,6 @@ public class PostController {
     @PostMapping("/post/{id}")
     public String store(@PathVariable int id, @ModelAttribute("comment") Comment comment) {
         commentService.save(comment);
-        return "/post/{id}";
+        return "redirect:/post/{id}";
     }
 }

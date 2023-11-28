@@ -67,7 +67,7 @@
             <div class="card blog  is-one-fifth-desktop">
                 <div class="card-image">
                     <figure class="image is-4by3">
-<!--                        <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
+                        <!--                        <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
                         <img th:src="*{image}" alt="Image to illustrate blog post">
 
                     </figure>
@@ -96,14 +96,18 @@
                 </div>
 
                 <form action="#" th:action="@{.}" th:object="${newComment}" method="post">
-                <input th:field="*{id}" type="hidden">
-                <input th:field="*{user}" type="hidden">
-                <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" type="hidden">
-                <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"
-                          th:field="*{text}"></textarea>
-                <div class="column is-full has-text-centered is-t">
-                    <button class="button b is-primary" type="submit">SEND</button>
-                </div>
+                    <input th:field="*{id}" type="hidden">
+                    <input th:field="*{user}" type="hidden">
+                    <input th:field="*{post}" type="hidden" th:value="${thisPost.id}">
+                    <input th:field="*{date}" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"
+                           type="hidden">
+                    <label>
+                    <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"
+                        th:field="*{text}"></textarea>
+                    </label>
+                    <div class="column is-full has-text-centered is-t">
+                        <button class="button b is-primary" type="submit">SEND</button>
+                    </div>
                 </form>
 
 

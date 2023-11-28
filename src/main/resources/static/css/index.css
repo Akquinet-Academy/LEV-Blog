@@ -72,8 +72,8 @@ p {
 }
 
 .image {
-    /*height: 15rem;*/
-    height: 100%;
+    height: 15rem;
+    width: 100%;
     object-fit: cover;
 }
 
