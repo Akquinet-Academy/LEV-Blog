@@ -2,12 +2,14 @@ package de.brightslearning.controller;
 
 import de.brightslearning.entity.Comment;
 import de.brightslearning.entity.Post;
+import de.brightslearning.entity.User;
 import de.brightslearning.service.CommentService;
 import de.brightslearning.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,17 +19,15 @@ import java.util.Optional;
 public class PostController {
 
    private final PostService postService;
-   private final CommentService commentService;
 
-    public PostController(PostService postService, CommentService commentService) {
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.commentService = commentService;
     }
 
     @GetMapping(value = "/")
     public String allPosts(Model model) {
-//        List<Post> postList = postService.findByOrderByDateDesc();
-        List<Post> postList = postService.findAll();
+        List<Post> postList = postService.findByOrderByDateDesc();
+//        List<Post> postList = postService.findAll();
         model.addAttribute("postList", postList);
         return "index";
     }
@@ -40,7 +40,9 @@ public class PostController {
     }
 
     @PostMapping(value = "/newpost")
-    public String store(@ModelAttribute("post") Post post) {
+    public String store(@ModelAttribute("post") Post post, @ModelAttribute("sessionUser") User sessionUser) {
+        post.setDate(LocalDateTime.now());
+        post.setUser(sessionUser);
         postService.save(post);
         return "redirect:/";
     }
@@ -64,11 +66,5 @@ public class PostController {
             return "post";
         }
         return "index";
-    }
-
-    @PostMapping("/post/{id}")
-    public String store(@PathVariable int id, @ModelAttribute("comment") Comment comment) {
-        commentService.save(comment);
-        return "redirect:/post/{id}";
     }
 }

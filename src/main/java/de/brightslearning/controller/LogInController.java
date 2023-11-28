@@ -7,14 +7,12 @@ import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
 import de.brightslearning.service.UserService;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.Optional;
@@ -33,18 +31,26 @@ private final UserRepository userRepository;
 //    public LogInController() {
 //    }
     @PostMapping("/login")
-    public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response) {
+    public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response, Model model) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (optionalUser.isPresent()) {
             Session session = new Session(optionalUser.get(), Instant.now().plusSeconds(7*24*60*60));
             sessionRepository.save(session);
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
+//            model.addAttribute("username", "user.getUsername()");
             // Login erfolgreich
             return "redirect:/";
         }
         // Login nicht erfolgreich
         return "login";
+    }
+    @PostMapping("/logout")
+    public String logout(@CookieValue(value = "sessionId", defaultValue = "") String sessionId, HttpServletResponse response) {
+        sessionRepository.deleteById(sessionId);
+        Cookie cookie = new Cookie("sessionId", null);
+        response.addCookie(cookie);
+        return "redirect:/";
     }
 
     @GetMapping(value = "/login")

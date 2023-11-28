@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "comment")
@@ -17,9 +19,11 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date", columnDefinition = "DATE")
-    private LocalDate date;
+    private LocalDateTime date;
+
+    @Column(name = "prettydate")
+    private String prettydate;
 
     @ManyToOne (cascade = CascadeType.REFRESH)
     @JoinColumn(name = "users_id")
@@ -32,11 +36,14 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String text, LocalDate date, User user, Post post) {
+    public Comment(String text, LocalDateTime date, User user, Post post) {
         this.text = text;
         this.date = date;
         this.user = user;
         this.post = post;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+        this.prettydate = date.format(formatter);
     }
 
     public int getId() {
@@ -55,11 +62,11 @@ public class Comment {
         this.text = text;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

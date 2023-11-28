@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link th:href="@{/css/index.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
 
 </head>
 <body>
@@ -52,16 +51,34 @@
                 th:href="@{/signup}">
                     SIGN UP
                 </a>
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
 
-                <a class="button b-nav is-light"
-                   th:href="@{/login}">
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null" th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}">
+                    </a>
 
-                    LOG IN
-                </a>
+<!--                <i class="fa fa-caret-down"></i>-->
+
+<!--                <a class="button b-nav is-light"-->
+<!--                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username) + }">-->
+<!--                    <i class="fa fa-caret-down" th:if="${username != null}"></i>-->
+
+
+<!--                </a>-->
+
+<!--                <a class="button b-nav is-light"-->
+<!--                   th:if="${username != null}">LOG OUT-->
+<!--                </a>-->
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 </nav>
+
 <div class="columns">
     <div class="column is-full has-text-centered">
         <h1>BLOGPOSTS</h1>
@@ -110,6 +127,7 @@
 <!--                            <p th:text="${post.text}"></p>-->
 <!--                            <br><br><br>-->
                             <time class="datum" th:text="${post.date}"></time>
+<!--                            <time class="datum" th:text="${post.prettydate}"></time>-->
                             <p th:text="${post.user}"></p>
                         </div>
                     </div>
@@ -128,6 +146,13 @@
         <br>
         <span>© 2023 LEV-Blog</span>
     </div>
+    <script>
+        let content = document.getElementById("dropContent");
+
+        function dropDown(){
+            content.classList.toggle("showContent");
+        }
+    </script>
 </footer>
 </body>
 </html>
