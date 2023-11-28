@@ -13,11 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../static/css/index.css">
-    <link th:href="@{/css/login.css}" rel="stylesheet" />
+    <link th:href="@{/css/signup.css}" rel="stylesheet" />
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{../blog}">
+        <a class="navbar-item" th:href="@{/}">
             <img class="pen" th:src="@{/images/pen.png}" alt="pen">
         </a>
 
@@ -30,7 +30,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{../blog}">
+            <a class="navbar-item" th:href="@{/}">
                 HOME
             </a>
             <a class="navbar-item" th:href="@{../about}">
@@ -43,10 +43,10 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button b-nav is-primary" th:href="@{/signup}">
+                <a class="button b-nav is-primary">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light">
+                <a class="button b-nav is-light" th:href="@{/login}">
                     LOG IN
                 </a>
             </div>
@@ -56,30 +56,31 @@
 <br>
 <div class="columns">
     <div class="column is-full has-text-centered">
-        <h1>LOGIN</h1>
+        <h1>USERS</h1>
     </div>
 </div>
-<div class="colums" >
-    <div class="column form is-full has-text-centered">
-<form action="#" method="POST" th:action="@{/login}" th:object="${user}">
-    <label for="username">USERNAME: </label>
-    <input type="text" id="username" name="username" required th:text="*{username}">
-    <br>
-    <br>
-    <label for="password">PASSWORD:</label>
-    <input type="password" id="password" name="password" required th:text="*{password}">
-    <br>
-    <br>
-    <button type="submit" class="button submitbutton b-nav is-light">
-        LOGIN
-    </button>
-</form>
+<div class="columns" >
+    <div class="column form is-full is-narrow">
+        <table class="table is-centered">
+            <tr>
+                <th>User</th>
+                <th>Admin</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:each="siteUser : ${userList}">
+                <td th:text="${siteUser.username}"/>
+                <td th:text="${siteUser.isAdmin}"/>
+                <td>
+                    <a th:action="@{siteUser.setAdmin}" th:href="@{/users/makeAdmin/{userId}}" class="button is-info">
+                            <span class="icon">
+                                <span class="mdi fa-person-dress"></span>
+                            </span>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
-<div class="colums" >
-    <div class="column txt is-full has-text-centered">
-<p>Noch nicht registriert? Melde dich jetzt <a class="hier" th:href="@{/signup}">hier</a> an!</p>
-    </div>
 <br><br><br>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
@@ -90,6 +91,5 @@
         <span>© 2023 LEV-Blog</span>
     </div>
 </footer>
-</div>
 </body>
 </html>
