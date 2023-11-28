@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New York Foodies</title>
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form action="#" th:action="@{/signup}" th:object="${user}" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required th:text="*{username}">
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required th:text="*{password}">
+    <br>
+<!--    <label for="password">Repeat Password:</label>-->
+<!--    <input type="password" id="password" name="password" required th:text="*{password}">-->
+<!--    <br>-->
+    <button type="submit">Register new account</button>
+</form>
+</body>
+</html>
