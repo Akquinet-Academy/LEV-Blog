@@ -51,11 +51,8 @@
                 th:href="@{/signup}">
                     SIGN UP
                 </a>
-
-                <a class="button b-nav is-light"
-                   th:href="@{/login}">
-
-                    LOG IN
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()">
+                    LOG IN  <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown" id="dropContent">
                     <form  name="logoutForm" th:action="@{/logout}" method="post">
@@ -132,6 +129,13 @@
         <br>
         <span>© 2023 LEV-Blog</span>
     </div>
+    <script>
+        let content = document.getElementById("dropContent");
+
+        function dropDown(){
+            content.classList.toggle("showContent");
+        }
+    </script>
 </footer>
 </body>
 </html>
