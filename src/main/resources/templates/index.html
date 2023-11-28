@@ -51,15 +51,24 @@
                 th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()">
-                    LOG IN  <i class="fa fa-caret-down"></i>
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
 
-                <a class="button b-nav is-light"
-                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username)}">
-                </a>
-                <a class="button b-nav is-light"
-                   th:if="${username != null}">LOG OUT
-                </a>
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null" th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}">
+                    </a>
+
+<!--                <i class="fa fa-caret-down"></i>-->
+
+<!--                <a class="button b-nav is-light"-->
+<!--                   th:href="@{/login}" th:text="${username == null ? 'LOGIN' : 'LOGGED IN AS ' + #strings.toUpperCase(username) + }">-->
+<!--                    <i class="fa fa-caret-down" th:if="${username != null}"></i>-->
+
+
+<!--                </a>-->
+
+<!--                <a class="button b-nav is-light"-->
+<!--                   th:if="${username != null}">LOG OUT-->
+<!--                </a>-->
                 <div class="dropdown" id="dropContent">
                     <form  name="logoutForm" th:action="@{/logout}" method="post">
                         <input  type="submit" value="LOGOUT"/>
