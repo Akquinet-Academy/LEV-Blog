@@ -134,3 +134,30 @@ label{
 .hier:hover{
     color: rgba(255, 206, 206, 0.5);
 }
+.dropdown{
+    color: black!important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 40px;
+    position: absolute;
+    right: 30px;
+    background-color: white;
+    border-color: white;
+    box-shadow: none;
+    opacity: 0;
+
+}
+#dropContent input{
+    background-color: white;
+    border: none;
+}
+.fa-caret-down{
+    margin-left:5px;
+}
+#dropContent input:hover{
+    color: rgba(255, 206, 206, 0.5) ;
+    cursor:pointer ;
+}
+.showContent{
+    opacity: 1;
+}

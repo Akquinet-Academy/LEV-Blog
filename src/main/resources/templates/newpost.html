@@ -44,18 +44,29 @@
     </div>
 
 
-    <!--    <div class="navbar-end">-->
-    <!--        <div class="navbar-item">-->
-    <!--            <div class="buttons">-->
-    <!--                <a class="button b-nav is-primary">-->
-    <!--                    SIGN UP-->
-    <!--                </a>-->
-    <!--                <a class="button b-nav is-light">-->
-    <!--                    LOG IN-->
-    <!--                </a>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="buttons">
+                <a class="button b-nav is-primary"
+                   th:href="@{/signup}" th:if="${username} == null">
+                    SIGN UP
+                </a>
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
+
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                    <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
 <div class="columns">
     <div class="column is-full has-text-centered">
@@ -131,5 +142,12 @@
         <span>© 2023 LEV-Blog</span>
     </div>
 </footer>
+<script>
+    let content = document.getElementById("dropContent");
+
+    function dropDown(){
+        content.classList.toggle("showContent");
+    }
+</script>
 </body>
 </html>
