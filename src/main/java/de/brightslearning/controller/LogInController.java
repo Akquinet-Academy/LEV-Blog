@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.Instant;
 import java.util.Optional;
+
 @Controller
-//@RequestMapping(value = "/login")
 public class LogInController {
 
 private final SessionRepository sessionRepository;
@@ -33,8 +33,8 @@ private final UserRepository userRepository;
 //    public LogInController() {
 //    }
     @PostMapping("/login")
-    public String login(@ModelAttribute(name = "username") String username, @ModelAttribute(name = "password") String password, HttpServletResponse response) {
-        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
+    public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response) {
+        Optional<User> optionalUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
         if (optionalUser.isPresent()) {
             Session session = new Session(optionalUser.get(), Instant.now().plusSeconds(7*24*60*60));
             sessionRepository.save(session);
@@ -45,6 +45,17 @@ private final UserRepository userRepository;
         }
         // Login nicht erfolgreich
         return "login";
+    }
+
+    @GetMapping(value = "/login")
+    public String getLoginTemplate(Model model){
+        model.addAttribute("user",new User());
+        return "login";
+    }
+
+    @GetMapping(value="/about")
+    public String getAboutUs(){
+        return "about";
     }
 
     @GetMapping("/signup")
