@@ -8,6 +8,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,13 +30,14 @@ private final UserRepository userRepository;
 //    public LogInController() {
 //    }
     @PostMapping("/login")
-    public String login(@ModelAttribute(name = "username") String username, @ModelAttribute(name = "password") String password, HttpServletResponse response) {
+    public String login(@ModelAttribute(name = "username") String username, @ModelAttribute(name = "password") String password, HttpServletResponse response, Model model) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
         if (optionalUser.isPresent()) {
             Session session = new Session(optionalUser.get(), Instant.now().plusSeconds(7*24*60*60));
             sessionRepository.save(session);
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
+            model.addAttribute("username", username)
             // Login erfolgreich
             return "redirect:/";
         }
