@@ -17,11 +17,9 @@ import java.util.Optional;
 public class PostController {
 
    private final PostService postService;
-   private final CommentService commentService;
 
-    public PostController(PostService postService, CommentService commentService) {
+    public PostController(PostService postService) {
         this.postService = postService;
-        this.commentService = commentService;
     }
 
     @GetMapping(value = "/")
@@ -64,11 +62,5 @@ public class PostController {
             return "post";
         }
         return "index";
-    }
-
-    @PostMapping("/post/{id}")
-    public String store(@PathVariable int id, @ModelAttribute("comment") Comment comment) {
-        commentService.save(comment);
-        return "redirect:/post/{id}";
     }
 }
