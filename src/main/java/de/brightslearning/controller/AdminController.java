@@ -28,6 +28,7 @@ public class AdminController {
 
     @PostMapping(value = "/users/makeAdmin/{userId}")
     public String makeAdmin(@PathVariable(name = "userId") Integer userId) {
+        System.out.println("reached method");
         User siteUser = userService.findById(userId).orElseThrow();
         siteUser.setAdmin(true);
         return "redirect:/users";

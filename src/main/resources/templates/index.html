@@ -79,7 +79,7 @@
 <!--</div>-->
 
 <br>
-<div class="columns">
+<div class="columns" th:if="${sessionUser != null}">
     <div class="column is-full has-text-centered" th:if="${sessionUser.isAdmin}">
 <!--        <div th:replace="~{/fragments/menu :: menu(active='Posts')}"></div>-->
 <!--        <a th:href="@{/newpost}" class="button b is-primary">NEW POST</a>-->
