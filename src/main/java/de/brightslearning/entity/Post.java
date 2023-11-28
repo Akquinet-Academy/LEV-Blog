@@ -32,7 +32,7 @@ public class Post {
     @Column(name = "text")
     private String text;
 
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.REFRESH})
+    @OneToMany(mappedBy = "post", cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
 //    @JoinColumn(name = "comment_id")
     private List<Comment> comments;
 
