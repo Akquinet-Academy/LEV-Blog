@@ -33,6 +33,7 @@ public class SessionControllerAdvice {
                     // neues Ablaufdatum für die Session
                     session.setExpiresAt(Instant.now().plusSeconds(7*24*60*60));
                     model.addAttribute("username", session.getUser().getUsername());
+                    model.addAttribute("isAdmin", session.getUser().isAdmin());
 
 
                     return session.getUser();

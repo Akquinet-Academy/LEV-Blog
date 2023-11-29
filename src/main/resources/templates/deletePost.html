@@ -73,26 +73,26 @@
 
 
 <div class="container">
+<div class="columns">
     <div class="columns">
-        <div class="columns">
-            <div class="column is-full has-text-centered">
-                <div class="card-content">
-                    <div class="content">
-                        Do you want to delete "<span th:text="${post.title}"></span>"?
-                    </div>
+        <div class="column is-full has-text-centered">
+            <div class="card-content">
+                <div class="content">
+                    Do you want to delete "<span th:text="${post.title}"></span>"?
                 </div>
-                <form action="#" th:action="@{/delete}" th:object="${post}" method="POST">
-                    <input type="hidden" th:field="*{id}">
-                    <button type="submit" class="button b is-primary">DELETE</button>
-                </form>
-                <a th:href="@{/}" class="button b is-primary">ABORT</a>
+            </div>
+            <form action="#" th:action="@{/delete}" th:object="${post}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <button type="submit" class="button b is-primary">DELETE</button>
+            </form>
+            <a th:href="@{/}" class="button b is-primary">ABORT</a>
 
             </div>
         </div>
     </div>
 </div>
 
-</section>
+
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>

@@ -46,7 +46,14 @@ public class PostController {
         postService.save(post);
         return "redirect:/";
     }
+    @GetMapping(value = "/delete")
+    public String delete(Model model, @RequestParam(name = "postId") Integer id) {
+        Post post = postService.findById(id).orElseThrow();
 
+        model.addAttribute("post", post);
+
+        return "/deletePost";
+    }
     @PostMapping(value = "/delete")
     public String delete(@ModelAttribute(name = "post") Post post) {
         postService.deleteById(post.getId());
