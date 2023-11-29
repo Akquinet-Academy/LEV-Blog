@@ -17,36 +17,32 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<nav aria-label="main navigation" class="navbar" role="navigation">
+<nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{/}">
-            <img class="pen" th:src="@{/images/pen.png}" alt="pen"/>
+        <a class="navbar-item" th:href="@{../blog}">
+            <img class="pen" th:src="@{/images/pen.png}" alt="pen">
         </a>
 
-        <a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="navbarBasicExample" role="button">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
         </a>
     </div>
 
-    <div class="navbar-menu" id="navbarBasicExample">
+    <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{/}">
+            <a class="navbar-item">
                 HOME
             </a>
         </div>
-    </div>
-
-
-    <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="navbar-item mobile2">
             <div class="buttons">
-                <a class="button b-nav is-primary"
+                <a class="button b-nav is-primary signup"
                    th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                <a class="button b-nav is-light login" th:href="@{/login}" th:if="${username} == null">
                     LOG IN  </a>
 
                 <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
@@ -142,6 +138,31 @@
         function dropDown() {
             content.classList.toggle("showContent");
         }
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Holen Sie sich alle Burger-Menü-Elemente basierend auf ihre Klasse
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Überprüfen Sie, ob Burger-Menü-Elemente vorhanden sind
+            if ($navbarBurgers.length > 0) {
+
+                // Schleife durch jedes Burger-Menü-Element
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+
+                        // Holen Sie sich das Ziel aus dem 'data-target'-Attribut
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Schalten Sie die 'is-active'-Klasse auf beide das Burger-Menü und das Ziel-Menü
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+        });
+
     </script>
 
 </footer>

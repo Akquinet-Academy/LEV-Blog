@@ -38,11 +38,11 @@
         </div>
             <div class="navbar-item mobile2">
                 <div class="buttons">
-                    <a class="button b-nav is-primary"
+                    <a class="button b-nav is-primary signup"
                        th:href="@{/signup}">
                         SIGN UP
                     </a>
-                    <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    <a class="button b-nav is-light login" th:href="@{/login}" th:if="${username} == null">
                         LOG IN  </a>
 
                     <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
@@ -57,9 +57,6 @@
                 </div>
             </div>
         </div>
-
-
-
 </nav>
 
 <div class="columns">
