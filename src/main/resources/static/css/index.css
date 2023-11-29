@@ -153,9 +153,19 @@ p {
     margin-left:5px;
 }
 #dropContent input:hover{
-    color: rgba(255, 206, 206, 0.5) ;
+    color: rgba(255, 206, 206, 0.5);
     cursor:pointer ;
 }
 .showContent{
     opacity: 1;
+}
+.nav2{
+    margin-left:660px;
+}
+
+@media screen and (max-width: 768px) {
+    /* Spezifische Stile für mobile Geräte */
+    .navbar-item mobile2 {
+        left:50px;
+    }
 }

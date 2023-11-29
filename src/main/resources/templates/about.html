@@ -43,15 +43,24 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button b-nav is-primary">
+                <a class="button b-nav is-primary"
+                   th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light">
-                    LOG IN
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
+
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                    <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                    <i class="fa fa-caret-down"></i>
                 </a>
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </nav>
 <br>

@@ -15,13 +15,13 @@
           rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="../static/css/index.css" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/deletepost.css}"/>
 
 </head>
 <body>
 <nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{..}">
+        <a class="navbar-item" th:href="@{../blog}">
             <img alt="pen" class="pen" th:src="@{/images/pen.png}">
         </a>
 
@@ -37,25 +37,31 @@
             <a class="navbar-item" th:href="@{..}">
                 HOME
             </a>
-            <a class="navbar-item" th:href="@{../about}">
-                ABOUT US
-            </a>
         </div>
     </div>
 
+    <div class="navbar-end">
+        <div class="navbar-item">
+            <div class="buttons">
+                <a class="button b-nav is-primary"
+                   th:href="@{/signup}">
+                    SIGN UP
+                </a>
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
 
-    <!--    <div class="navbar-end">-->
-    <!--        <div class="navbar-item">-->
-    <!--            <div class="buttons">-->
-    <!--                <a class="button b-nav is-primary">-->
-    <!--                    SIGN UP-->
-    <!--                </a>-->
-    <!--                <a class="button b-nav is-light">-->
-    <!--                    LOG IN-->
-    <!--                </a>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                    <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </nav>
 <div class="columns">
     <div class="column is-full has-text-centered">

@@ -127,3 +127,39 @@ p {
     margin-right: 5px;
 }
 
+.dropdown{
+    color: black!important;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 40px;
+    position: absolute;
+    right: 38px;
+    background-color: white;
+    border-color: white;
+    box-shadow: none;
+    opacity: 0;
+
+}
+#dropContent input{
+    background-color: white;
+    border: none;
+}
+.fa-caret-down{
+    margin-left:5px;
+}
+#dropContent input:hover{
+    color: rgba(255, 206, 206, 0.5) ;
+    cursor:pointer ;
+}
+.showContent{
+    opacity: 1;
+}
+.table, .table th, .table td {
+    border: 2px solid rgba(255, 206, 206, 0.5); /* Ändere die Border-Width und die Border-Color für alle Zellen */
+    border-radius: 10px;
+    width: 30%;
+}
+.section{
+    max-width: 2000px;
+    margin:auto;
+}

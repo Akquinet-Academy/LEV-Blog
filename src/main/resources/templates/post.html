@@ -35,9 +35,6 @@
             <a class="navbar-item" th:href="@{/}">
                 HOME
             </a>
-            <a class="navbar-item" th:href="@{../about}">
-                ABOUT US
-            </a>
         </div>
     </div>
 
@@ -50,14 +47,15 @@
                     SIGN UP
                 </a>
                 <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
-                    LOG IN </a>
+                    LOG IN  </a>
 
-                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null"
-                   th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}">
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                    <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                    <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown" id="dropContent">
-                    <form method="post" name="logoutForm" th:action="@{/logout}">
-                        <input type="submit" value="LOGOUT"/>
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
                     </form>
                 </div>
             </div>
@@ -68,8 +66,8 @@
 
 
 <p class="container is-widescreen has-text-centered">
-<section class="section">
-    <div class="columns" th:object="${thisPost}">
+<section class="section is-centered">
+    <div class="columns is-centered" th:object="${thisPost}">
         <div class="column is-full">
             <div class="card blog  is-one-fifth-desktop">
                 <div class="card-image">
@@ -90,14 +88,12 @@
                     </div>
                 </div>
 
-                <div class="card-content" th:each="comment : ${commentList}">
+                <div class="card-content table1" th:each="comment : ${commentList}">
                     <table class="table is-striped">
                         <tr>
-                            <td th:text="${comment.date}"/>
-                            <td class="has-text-weight-bold" th:text="${comment.user}"/>
+                            <td class="has-text-weight-bold" th:text="${comment.user.getUsername() + ', ' + comment.date}"/>
                         </tr>
                         <tr>
-                            <td></td>
                             <td th:text="${comment.text}"/>
                         </tr>
                     </table>
