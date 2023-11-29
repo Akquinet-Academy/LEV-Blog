@@ -61,6 +61,8 @@ public class PostController {
 //        return "index";
     }
 
+
+
     @GetMapping("/post/{id}")
     public String showPostDetails(@PathVariable int id, Model model) {
         Optional<Post> optionalPost = postService.findById(id);

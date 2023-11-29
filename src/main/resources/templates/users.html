@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="../static/css/index.css">
     <link th:href="@{/css/signup.css}" rel="stylesheet" />
 <body>
@@ -43,7 +44,7 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button b-nav is-primary">
+                <a class="button b-nav is-primary" th:href="@{/signup}">
                     SIGN UP
                 </a>
                 <a class="button b-nav is-light" th:href="@{/login}">
@@ -60,22 +61,22 @@
     </div>
 </div>
 <div class="columns" >
-    <div class="column form is-full is-narrow">
-        <table class="table is-centered">
+    <div class="column form">
+        <table class="table is-fullwidth">
             <tr>
-                <th>User</th>
-                <th>Admin</th>
-                <th>Actions</th>
+                <th class="has-text-right">User</th>
+                <th class="has-text-centered">Admin</th>
+                <th>Make Admin</th>
             </tr>
             <tr th:each="siteUser : ${userList}">
-                <td th:text="${siteUser.username}"/>
-                <td th:text="${siteUser.isAdmin}"/>
+                <td th:text="${siteUser.username}" class="has-text-right"/>
+                <td th:text="${siteUser.isAdmin}" class="has-text-centered"/>
                 <td>
-                    <a th:action="@{siteUser.setAdmin}" th:href="@{/users/makeAdmin/{userId}}" class="button is-info">
-                            <span class="icon">
-                                <span class="mdi fa-person-dress"></span>
-                            </span>
-                    </a>
+                    <button type="submit" th:unless="${siteUser.isAdmin}" th:href="@{/users/makeAdmin/{userId}(userId=${siteUser.getId()})}" class="button is-info">
+                        <span class="icon">
+                            <span class="mdi mdi-account-check"></span>
+                        </span>
+                    </button>
                 </td>
             </tr>
         </table>
