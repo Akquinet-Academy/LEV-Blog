@@ -22,9 +22,6 @@ public class Comment {
     @Column(name = "date", columnDefinition = "DATE")
     private LocalDateTime date;
 
-    @Column(name = "prettydate")
-    private String prettydate;
-
     @ManyToOne (cascade = CascadeType.REFRESH)
     @JoinColumn(name = "users_id")
     private User user;
@@ -42,8 +39,6 @@ public class Comment {
         this.user = user;
         this.post = post;
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-        this.prettydate = date.format(formatter);
     }
 
     public int getId() {
