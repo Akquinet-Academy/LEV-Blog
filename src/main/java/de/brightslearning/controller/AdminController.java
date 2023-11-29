@@ -28,7 +28,6 @@ public class AdminController {
 
     @PostMapping(value = "/users/makeAdmin/{userId}")
     public String makeAdmin(@PathVariable int userId) {
-        System.out.println("reached method");
         Optional<User> optionalUser = userService.findById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();

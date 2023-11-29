@@ -93,7 +93,7 @@
                 <div class="card-content" th:each="comment : ${commentList}">
                     <table class="table is-striped">
                         <tr>
-                            <td th:text="${comment.date}"/>
+                            <td th:text="${#temporals.format(comment.date, 'dd.MM. HH:mm')}"></td>
                             <td class="has-text-weight-bold" th:text="${comment.user}"/>
                             <td></td>
                         </tr>
