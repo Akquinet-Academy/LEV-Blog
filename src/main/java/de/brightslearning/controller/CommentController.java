@@ -6,10 +6,8 @@ import de.brightslearning.entity.User;
 import de.brightslearning.repository.PostRepository;
 import de.brightslearning.service.CommentService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -36,5 +34,20 @@ public class CommentController {
             commentService.save(comment);
         }
         return "redirect:/post/" + postid;
+    }
+
+    @GetMapping(value = "/deleteComment")
+    public String deleteComment(Model model, @RequestParam(name = "commentId") Integer id) {
+        Comment comment = commentService.findById(id).orElseThrow();
+        model.addAttribute("comment", comment);
+        return "/deleteComment";
+    }
+
+    @PostMapping(value = "/deleteComment")
+    public String deleteComment(@ModelAttribute(name = "comment") Comment comment) {
+        int postId = comment.getPost().getId();
+        commentService.deleteById(comment.getId());
+        return "redirect:/post/" + postId;
+//        return "index";
     }
 }

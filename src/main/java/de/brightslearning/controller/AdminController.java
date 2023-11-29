@@ -5,12 +5,10 @@ import de.brightslearning.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdminController {
@@ -28,11 +26,15 @@ public class AdminController {
         return "users";
     }
 
-    @PutMapping(value = "/users/makeAdmin/{userId}")
-    public String makeAdmin(@PathVariable(name = "userId") Integer userId) {
+    @PostMapping(value = "/users/makeAdmin/{userId}")
+    public String makeAdmin(@PathVariable int userId) {
         System.out.println("reached method");
-        User siteUser = userService.findById(userId).orElseThrow();
-        siteUser.setAdmin(true);
+        Optional<User> optionalUser = userService.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setAdmin(true);
+            userService.save(user);
+        }
         return "redirect:/users";
     }
 }
