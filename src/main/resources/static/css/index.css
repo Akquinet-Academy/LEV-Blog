@@ -163,9 +163,6 @@ p {
     margin-left:660px;
 }
 
-@media screen and (max-width: 768px) {
-    /* Spezifische Stile für mobile Geräte */
-    .navbar-item mobile2 {
-        left:50px;
-    }
+.navbar-burger{
+    margin-top: 50px;
 }

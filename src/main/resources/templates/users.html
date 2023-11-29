@@ -31,21 +31,17 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{/}">
+            <a class="navbar-item">
                 HOME
             </a>
         </div>
-    </div>
-
-
-    <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="navbar-item mobile2">
             <div class="buttons">
-                <a class="button b-nav is-primary"
+                <a class="button b-nav is-primary signup"
                    th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                <a class="button b-nav is-light login" th:href="@{/login}" th:if="${username} == null">
                     LOG IN  </a>
 
                 <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
@@ -89,7 +85,7 @@
         </table>
     </div>
 </div>
-<br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>
@@ -99,5 +95,37 @@
         <span>© 2023 LEV-Blog</span>
     </div>
 </footer>
+<script>
+    let content = document.getElementById("dropContent");
+
+    function dropDown(){
+        content.classList.toggle("showContent");
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // Holen Sie sich alle Burger-Menü-Elemente basierend auf ihre Klasse
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+        // Überprüfen Sie, ob Burger-Menü-Elemente vorhanden sind
+        if ($navbarBurgers.length > 0) {
+
+            // Schleife durch jedes Burger-Menü-Element
+            $navbarBurgers.forEach( el => {
+                el.addEventListener('click', () => {
+
+                    // Holen Sie sich das Ziel aus dem 'data-target'-Attribut
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+
+                    // Schalten Sie die 'is-active'-Klasse auf beide das Burger-Menü und das Ziel-Menü
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+
+                });
+            });
+        }
+    });
+
+</script>
 </body>
 </html>
