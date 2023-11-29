@@ -28,8 +28,6 @@ private final UserRepository userRepository;
         this.userRepository = userRepository;
     }
 
-//    public LogInController() {
-//    }
     @PostMapping("/login")
     public String login(@ModelAttribute(name = "user") User user, HttpServletResponse response, Model model) {
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
@@ -38,7 +36,6 @@ private final UserRepository userRepository;
             sessionRepository.save(session);
             Cookie cookie = new Cookie("sessionId", session.getId());
             response.addCookie(cookie);
-//            model.addAttribute("username", "user.getUsername()");
             // Login erfolgreich
             return "redirect:/";
         }

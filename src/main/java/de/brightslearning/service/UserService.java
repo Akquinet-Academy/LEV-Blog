@@ -3,6 +3,7 @@ package de.brightslearning.service;
 import de.brightslearning.entity.User;
 import de.brightslearning.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class UserService {
     }
 
     public List<User> findAll() {
-        return userRepository.findAll();
+        return userRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     public Optional<User> findById(Integer userId) {

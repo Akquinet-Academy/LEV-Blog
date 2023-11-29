@@ -88,7 +88,6 @@
                 <a th:href="@{/post/{path}(path=${post.id})}">
                     <div class="card-image">
                         <figure class="image is-4by3">
-<!--                            <img th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
                             <img th:src="${post.image}" alt="Image to illustrate blog post">
                         </figure>
                     </div>
@@ -101,10 +100,10 @@
                                 read & comment
                             </a>
                             <br>
-<!--                            <p th:text="${post.text}"></p>-->
-<!--                            <br><br><br>-->
-                            <time class="datum" th:text="${post.date}"></time>
-<!--                            <time class="datum" th:text="${post.prettydate}"></time>-->
+                            <br>
+                            <time class="datum" th:text="${#temporals.format(post.date, 'dd. MMMM yyyy')}"></time>
+                            <br>
+                            <time class="datum" th:text="${#temporals.format(post.date, 'HH:mm')}"></time><span class="datum"> Uhr</span>
                             <p th:text="${post.user}"></p>
                         </div>
                     </div>
