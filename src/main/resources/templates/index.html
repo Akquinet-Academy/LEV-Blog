@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item">
+        <a class="navbar-item" th:href="@{../blog}">
             <img class="pen" th:src="@{/images/pen.png}" alt="pen">
         </a>
 
@@ -35,35 +35,31 @@
             <a class="navbar-item">
                 HOME
             </a>
-
-            <a class="navbar-item" th:href="@{/about}">
-
-                ABOUT US
-            </a>
         </div>
-    </div>
-
-
-    <div class="navbar-end">
-        <div class="navbar-item">
-            <div class="buttons">
-                <a class="button b-nav is-primary"
-                th:href="@{/signup}">
-                    SIGN UP
-                </a>
-                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
-                    LOG IN  </a>
-
-                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null" th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}">
+            <div class="navbar-item mobile2">
+                <div class="buttons">
+                    <a class="button b-nav is-primary"
+                       th:href="@{/signup}">
+                        SIGN UP
                     </a>
-                <div class="dropdown" id="dropContent">
-                    <form  name="logoutForm" th:action="@{/logout}" method="post">
-                        <input  type="submit" value="LOGOUT"/>
-                    </form>
+                    <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                        LOG IN  </a>
+
+                    <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                        <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                        <i class="fa fa-caret-down"></i>
+                    </a>
+                    <div class="dropdown" id="dropContent">
+                        <form  name="logoutForm" th:action="@{/logout}" method="post">
+                            <input  type="submit" value="LOGOUT"/>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
+
 </nav>
 
 <div class="columns">
@@ -71,9 +67,6 @@
         <h1>BLOGPOSTS</h1>
     </div>
 </div>
-
-
-<br>
 <div class="columns" th:if="${sessionUser != null}">
     <div class="column is-full has-text-centered" th:if="${isAdmin}">
         <a class="button b is-primary" th:href="@{/newpost}">NEW POST</a>
@@ -95,16 +88,17 @@
                         <div class="content">
                             <h2 th:text="${post.title}"></h2>
                             <br>
-                            <a class="button"
+                            <a class="button b"
                                th:href="@{/post/{path}(path=${post.id})}">
                                 read & comment
                             </a>
-                            <br>
-                            <br>
+                            <br><br>
+                            <p>By: <span th:text="*{post.user}"></span></p>
+                            <br><br>
                             <time class="datum" th:text="${#temporals.format(post.date, 'dd. MMMM yyyy')}"></time>
                             <br>
                             <time class="datum" th:text="${#temporals.format(post.date, 'HH:mm')}"></time><span class="datum"> Uhr</span>
-                            <p th:text="${post.user}"></p>
+
                         </div>
                     </div>
                 </a>
@@ -113,6 +107,7 @@
 
     </div>
 </div>
+<br><br>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>
@@ -128,6 +123,32 @@
         function dropDown(){
             content.classList.toggle("showContent");
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Holen Sie sich alle Burger-Menü-Elemente basierend auf ihre Klasse
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+            // Überprüfen Sie, ob Burger-Menü-Elemente vorhanden sind
+            if ($navbarBurgers.length > 0) {
+
+                // Schleife durch jedes Burger-Menü-Element
+                $navbarBurgers.forEach( el => {
+                    el.addEventListener('click', () => {
+
+                        // Holen Sie sich das Ziel aus dem 'data-target'-Attribut
+                        const target = el.dataset.target;
+                        const $target = document.getElementById(target);
+
+                        // Schalten Sie die 'is-active'-Klasse auf beide das Burger-Menü und das Ziel-Menü
+                        el.classList.toggle('is-active');
+                        $target.classList.toggle('is-active');
+
+                    });
+                });
+            }
+        });
+
     </script>
 </footer>
 </body>
