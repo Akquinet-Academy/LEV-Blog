@@ -19,7 +19,7 @@
 <body>
 <nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{..}">
+        <a class="navbar-item" th:href="@{/}">
             <img alt="pen" class="pen" th:src="@{/images/pen.png}"/>
         </a>
 
@@ -32,10 +32,10 @@
 
     <div class="navbar-menu" id="navbarBasicExample">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{..}">
+            <a class="navbar-item" th:href="@{/}">
                 HOME
             </a>
-            <a class="navbar-item" th:href="@{../about}">
+            <a class="navbar-item" th:href="@{/about}">
                 ABOUT US
             </a>
         </div>
@@ -87,12 +87,12 @@
             </form>
             <a th:href="@{/}" class="button b is-primary">ABORT</a>
 
+            </div>
         </div>
     </div>
 </div>
-</div>
 
-</section>
+
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
         <span class="icon"><a href="mailto:brights@brights.com"><i class="fas fa-envelope"></i></a> </span>
