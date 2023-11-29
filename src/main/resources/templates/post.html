@@ -19,8 +19,8 @@
 <body>
 <nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{..}">
-            <img alt="pen" class="pen" th:src="@{/images/pen.png}"/>
+        <a class="navbar-item" th:href="@{../blog}">
+            <img class="pen" th:src="@{/images/pen.png}" alt="pen"/>
         </a>
 
         <a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="navbarBasicExample" role="button">
@@ -32,7 +32,7 @@
 
     <div class="navbar-menu" id="navbarBasicExample">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{..}">
+            <a class="navbar-item" th:href="@{../blog}">
                 HOME
             </a>
             <a class="navbar-item" th:href="@{../about}">

@@ -73,7 +73,7 @@ private final UserRepository userRepository;
     @PostMapping("/signup")
     public String store(@ModelAttribute("user") User user) {
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }
