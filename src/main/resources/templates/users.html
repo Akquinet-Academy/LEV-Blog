@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css" />
     <link rel="stylesheet" href="../static/css/index.css">
-    <link th:href="@{/css/signup.css}" rel="stylesheet" />
+    <link th:href="@{/css/users.css}" rel="stylesheet" />
 <body>
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{/}">
+        <a class="navbar-item" th:href="@{../blog}">
             <img class="pen" th:src="@{/images/pen.png}" alt="pen">
         </a>
 
@@ -34,9 +34,6 @@
             <a class="navbar-item" th:href="@{/}">
                 HOME
             </a>
-            <a class="navbar-item" th:href="@{../about}">
-                ABOUT US
-            </a>
         </div>
     </div>
 
@@ -44,12 +41,22 @@
     <div class="navbar-end">
         <div class="navbar-item">
             <div class="buttons">
-                <a class="button b-nav is-primary" th:href="@{/signup}">
+                <a class="button b-nav is-primary"
+                   th:href="@{/signup}">
                     SIGN UP
                 </a>
-                <a class="button b-nav is-light" th:href="@{/login}">
-                    LOG IN
+                <a class="button b-nav is-light" th:href="@{/login}" th:if="${username} == null">
+                    LOG IN  </a>
+
+                <a class="button b-nav is-light" id="dropButton" onclick="dropDown()" th:if="${username} != null">
+                    <span th:text="'LOGGED IN AS ' + ${#strings.toUpperCase(username)}"></span>
+                    <i class="fa fa-caret-down"></i>
                 </a>
+                <div class="dropdown" id="dropContent">
+                    <form  name="logoutForm" th:action="@{/logout}" method="post">
+                        <input  type="submit" value="LOGOUT"/>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
