@@ -19,8 +19,8 @@
 <body>
 <nav aria-label="main navigation" class="navbar" role="navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" th:href="@{../blog}">
-            <img class="pen" th:src="@{/images/pen.png}" alt="pen"/>
+        <a class="navbar-item" th:href="@{..}">
+            <img alt="pen" class="pen" th:src="@{/images/pen.png}"/>
         </a>
 
         <a aria-expanded="false" aria-label="menu" class="navbar-burger" data-target="navbarBasicExample" role="button">
@@ -32,7 +32,7 @@
 
     <div class="navbar-menu" id="navbarBasicExample">
         <div class="navbar-start">
-            <a class="navbar-item" th:href="@{../blog}">
+            <a class="navbar-item" th:href="@{..}">
                 HOME
             </a>
             <a class="navbar-item" th:href="@{../about}">
@@ -64,75 +64,34 @@
         </div>
     </div>
 </nav>
-<br>
+<div class="columns">
+    <div class="column is-full has-text-centered">
+        <h1>DELETE POST</h1>
+    </div>
+</div>
 
 
-<p class="container is-widescreen has-text-centered">
-<section class="section">
-    <div class="columns" th:object="${thisPost}">
-        <div class="column is-full">
-            <div class="card blog  is-one-fifth-desktop">
-                <div class="card-image">
-                    <figure class="image is-4by3">
-                        <!--                        <img class="image" th:src="@{/images/Gartenparty.jpg}" alt="Placeholder image">-->
-                        <img alt="Image to illustrate blog post" th:src="*{image}">
 
-                    </figure>
+<div class="container">
+<div class="columns">
+    <div class="columns">
+        <div class="column is-full has-text-centered">
+            <div class="card-content">
+                <div class="content">
+                    Do you want to delete "<span th:text="${post.title}"></span>"?
                 </div>
-                <div class="card-content">
-                    <div class="content">
-                        <h2 th:text="*{title}"></h2>
-                        <br>
-                        <p class="text" th:text="*{text}"></p>
-                        <br>
-                        <p>By: <span th:text="*{user}"></span></p>
-                        <time class="datum" th:text="*{date}"></time>
-                        <!--                        <time class="datum" th:text="*{prettydate}"></time>-->
-                    </div>
-                </div>
-
-                <div class="card-content" th:each="comment : ${commentList}">
-                    <table class="table is-striped">
-                        <tr>
-                            <td th:text="${comment.date}"/>
-                            <!--                            <td th:text="${comment.prettydate}"/>-->
-                            <td class="has-text-weight-bold" th:text="${comment.user}"/>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td th:text="${comment.text}"/>
-                        </tr>
-                    </table>
-                </div>
-
-                <br>
-                <div class="columns">
-                    <div class="column is-full has-text-centered">
-                        <a class="button b is-primary" th:href="@{/delete(postId=${thisPost.id})}" th:if="${isAdmin}"
-
-                        >DELETE</a>
-                        <!--        <a th:href="@{/newpost}" class="button b is-primary">ORDER POSTS</a>-->
-                        <a class="button b is-primary">EDIT</a>
-                    </div>
-                </div>
-
-                <br>
-
-                <form method="post" th:action="@{/post/{id}/comment(id=${thisPost.id})}" th:if="${sessionUser} != null"
-                      th:object="${newComment}">
-                    <label>
-                    <textarea class="textarea" maxlength="500" placeholder="Share your thoughts!"
-                              th:field="*{text}"></textarea>
-                    </label>
-                    <div class="column is-full has-text-centered is-t">
-                        <button class="button b is-primary" type="submit">SEND</button>
-                    </div>
-                </form>
-
-
             </div>
+            <form action="#" th:action="@{/delete}" th:object="${post}" method="POST">
+                <input type="hidden" th:field="*{id}">
+                <button type="submit" class="button b is-primary">DELETE</button>
+            </form>
+            <a th:href="@{/}" class="button b is-primary">ABORT</a>
+
         </div>
     </div>
+</div>
+</div>
+
 </section>
 <footer class="footer" id="footer">
     <div class="has-text-centered has-text-black">
