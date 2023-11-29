@@ -61,12 +61,6 @@ public class PostController {
 //        return "index";
     }
 
-    @GetMapping(value = "/delete")
-    public String delete(Model model, @RequestParam(name = "postId") Integer id) {
-        Post post = postService.findById(id).orElseThrow();
-        model.addAttribute("post", post);
-        return "/deletePost";
-    }
 
 
     @GetMapping("/post/{id}")

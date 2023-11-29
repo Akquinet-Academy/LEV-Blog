@@ -109,7 +109,7 @@
                         <a class="button b is-primary" th:href="@{/delete(postId=${thisPost.id})}" th:if="${isAdmin}"
 
                         >DELETE</a>
-                        <a class="button b is-primary">EDIT</a>
+                        <a class="button b is-primary" th:if="${isAdmin}">EDIT</a>
                     </div>
                 </div>
 
